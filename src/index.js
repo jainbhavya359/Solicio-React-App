@@ -1,7 +1,7 @@
 // index.js
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import App from "./App";
 import { Auth0ProviderWithHistory } from "./Auth0Provider";
 import "./index.css"; // Make sure CSS is here
@@ -10,10 +10,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
+    <HashRouter>
       <Auth0ProviderWithHistory>
         <App />
       </Auth0ProviderWithHistory>
-    </BrowserRouter>
+    </HashRouter>
   </React.StrictMode>
 );

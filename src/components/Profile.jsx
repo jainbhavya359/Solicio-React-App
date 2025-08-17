@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -15,7 +15,7 @@ export function Profile() {
         if(isAuthenticated){
             const fetchData = async () =>{
                 try{
-                    const res = await fetch(`http://localhost:3001/api/getLoan`)
+                    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getLoan`)
                     if(!res.ok){
                         throw new Error("Network issue");
                     }else{
@@ -47,7 +47,7 @@ export function Profile() {
     const onHandleClick = (id) => {
         const DeleteItem = async () => {
             try{
-                await fetch(`http://localhost:3001/api/deleteLoans/${id}`, {
+                await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/deleteLoans/${id}`, {
                     method: "DELETE",
                 });
                 setReloading(true);

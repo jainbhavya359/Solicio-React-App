@@ -12,7 +12,7 @@ export default function Tips(){
     useEffect(() => {
         const fetchData = async ()=> {
             try{
-                const respose = await fetch('http://localhost:3001/api/tips');
+                const respose = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/tips`);
                 const data = await respose.json();
                 setData(data);
             }catch (err){

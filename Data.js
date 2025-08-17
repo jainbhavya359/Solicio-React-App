@@ -1,17 +1,24 @@
 import express from "express";
 import pg from "pg";
-import cors from 'cors';
+import cors from "cors";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: ["http://localhost:3000", "https://your-username.github.io"], // add your frontend URLs
+  methods: ["GET", "POST", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 
 const db = new pg.Client({
-    user: "postgres",
-    host: "localhost",
-    database: "permalist",
-    password: "pchykj",
-    port: 5432
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT,
 });
 
 db.connect();

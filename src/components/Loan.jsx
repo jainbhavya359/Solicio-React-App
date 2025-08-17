@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Services } from "./Services";
@@ -44,7 +44,7 @@ export default function Loan (){
             
         }
         try{
-            const response = await fetch('http://localhost:3001/api/loan', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/loan`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({loanName, lender, amount, panNum, date, name, email})

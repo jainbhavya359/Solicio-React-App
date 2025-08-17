@@ -1,4 +1,3 @@
-// Auth0ProviderWithHistory.jsx
 import { Auth0Provider } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 
@@ -11,10 +10,10 @@ export const Auth0ProviderWithHistory = ({ children }) => {
 
   return (
     <Auth0Provider
-      domain="dev-pbjcccbbqutobnl6.us.auth0.com"
-      clientId="i75wZWZSUUyNULU9chdrytFqbPuhvff9"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
       authorizationParams={{
-        redirect_uri: window.location.origin,
+        redirect_uri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
       }}
       onRedirectCallback={onRedirectCallback}
       cacheLocation="localstorage"

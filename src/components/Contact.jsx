@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import Header from "./Header";
 import Footer from "./Footer";
 import { useState, useEffect } from "react";
@@ -17,7 +17,7 @@ export default function ContactUs() {
   useEffect( () => {
     const fetchData = async () => {
       try{
-        const res = await fetch('http://localhost:3001/api/questions');
+        const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/questions`);
         if(!res.ok){
             throw new Error("Network issue");
         }else{
@@ -43,7 +43,7 @@ export default function ContactUs() {
     event.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3001/api/contact', {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, subject, message: textArea })
