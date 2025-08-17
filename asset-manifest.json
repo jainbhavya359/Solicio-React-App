@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Solicio-React-App-/static/css/main.cd35a008.css",
+    "main.js": "/Solicio-React-App-/static/js/main.ed966cb7.js",
+    "index.html": "/Solicio-React-App-/index.html",
+    "main.cd35a008.css.map": "/Solicio-React-App-/static/css/main.cd35a008.css.map",
+    "main.ed966cb7.js.map": "/Solicio-React-App-/static/js/main.ed966cb7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.cd35a008.css",
+    "static/js/main.ed966cb7.js"
+  ]
+}
