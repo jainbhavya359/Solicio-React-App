@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:3000", "https://your-username.github.io"], // add your frontend URLs
+  origin: ["http://localhost:3000", "https://jainbhavya359.github.io"],
   methods: ["GET", "POST", "DELETE"],
   credentials: true
 }));
