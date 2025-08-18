@@ -20,7 +20,7 @@ function Homepage(){
       {/* Modern Hero */}
       <section
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center "
-        style={{ backgroundImage: 'url("../../public/hero-image2.jpg")' }}
+        style={{ backgroundImage: 'url("/hero-image2.jpg")' }}
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
@@ -89,17 +89,17 @@ function Homepage(){
             {
               name: "Maria Lopez",
               text: "Thanks to MSME Connect, my business has grown exponentially!",
-              image: "../../public/story1.jpg",
+              image: "/story1.jpg",
             },
             {
               name: "Gurpeerat Singh",
               text: "Our reach has expanded far beyond our expectations.",
-              image: "../../public/story2.jpg",
+              image: "/story2.jpg",
             },
             {
               name: "Ahmed Khan",
               text: "MSME Connect made digital transformation seamless.",
-              image: "../../public/story3.jpg",
+              image: "/story3.jpg",
             },
           ].map((story, idx) => (
             <div
