@@ -5,6 +5,10 @@ import Services from "./Services";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Tips from "./Tips";
+import hero_image2 from "../assets/hero_image2.jpg";
+import story1 from '../assets/images/story1.jpg';
+import story2 from '../assets/images/story2.jpg';
+import story3 from '../assets/images/story3.jpg';
 
 function Homepage(){
 
@@ -20,7 +24,7 @@ function Homepage(){
       {/* Modern Hero */}
       <section
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center "
-        style={{ backgroundImage: 'url("/hero-image2.jpg")' }}
+        style={{ backgroundImage: hero_image2 }}
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
@@ -89,17 +93,17 @@ function Homepage(){
             {
               name: "Maria Lopez",
               text: "Thanks to MSME Connect, my business has grown exponentially!",
-              image: "/story1.jpg",
+              image: story1,
             },
             {
               name: "Gurpeerat Singh",
               text: "Our reach has expanded far beyond our expectations.",
-              image: "/story2.jpg",
+              image: story2,
             },
             {
               name: "Ahmed Khan",
               text: "MSME Connect made digital transformation seamless.",
-              image: "/story3.jpg",
+              image: story3,
             },
           ].map((story, idx) => (
             <div
