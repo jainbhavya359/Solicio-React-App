@@ -5,10 +5,10 @@ import Services from "./Services";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Tips from "./Tips";
-import hero_image2 from "../assets/hero_image2.jpg";
-import story1 from '../assets/story1.jpg';
-import story2 from '../assets/story2.jpg';
-import story3 from '../assets/story3.jpg';
+import hero_image2 from "../assets/images/hero_image2.jpg";
+import story1 from "../assets/images/story1.jpg";
+import story2 from "../assets/images/story2.jpg";
+import story3 from "../assets/images/story3.jpg";
 
 function Homepage(){
 
@@ -24,7 +24,7 @@ function Homepage(){
       {/* Modern Hero */}
       <section
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center "
-        style={{ backgroundImage: hero_image2 }}
+        style={{ backgroundImage: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fapi-server.pexels.com%2Fphoto%2Fan-elderly-man-selling-vegetables-in-a-stall-7416824%2F&psig=AOvVaw0cICkrT4qA_7V_KxxHoKp7&ust=1755624088209000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC1mcLvlI8DFQAAAAAdAAAAABAE") }}
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
