@@ -5,10 +5,6 @@ import Services from "./Services";
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Tips from "./Tips";
-import hero_image2 from "../assets/images/hero_image2.jpg";
-import story1 from "../assets/images/story1.jpg";
-import story2 from "../assets/images/story2.jpg";
-import story3 from "../assets/images/story3.jpg";
 
 function Homepage(){
 
@@ -93,17 +89,17 @@ function Homepage(){
             {
               name: "Maria Lopez",
               text: "Thanks to MSME Connect, my business has grown exponentially!",
-              image: story1,
+              image: "",
             },
             {
               name: "Gurpeerat Singh",
               text: "Our reach has expanded far beyond our expectations.",
-              image: story2,
+              image: "",
             },
             {
               name: "Ahmed Khan",
               text: "MSME Connect made digital transformation seamless.",
-              image: story3,
+              image: "",
             },
           ].map((story, idx) => (
             <div
