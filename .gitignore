@@ -19,3 +19,6 @@ pnpm-debug.log*
 # OS/system files
 .DS_Store
 Thumbs.db
+
+# Local Netlify folder
+.netlify

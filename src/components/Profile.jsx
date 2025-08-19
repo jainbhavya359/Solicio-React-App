@@ -88,7 +88,7 @@ export function Profile() {
                     </thead>
                     <tbody>
                     {data.map((loan, index) => (
-                        <tr
+                        (loan.email == user.email ? <tr
                         key={loan.id}
                         className={`${
                             index % 2 === 0 ? "bg-gray-50" : "bg-white"
@@ -108,7 +108,7 @@ export function Profile() {
                             Remove
                             </button>
                         </td>
-                        </tr>
+                        </tr> : null)
                     ))}
                     </tbody>
                 </table>
