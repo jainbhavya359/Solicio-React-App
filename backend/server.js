@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-  origin: ["http://localhost:3000", "https://jainbhavya359.github.io"],
+  origin: ["http://localhost:3000", "https://jainbhavya359.github.io", "https://solicio.netlify.app"],
   methods: ["GET", "POST", "DELETE"],
   credentials: true
 }));
