@@ -20,7 +20,7 @@ function Homepage(){
       {/* Modern Hero */}
       <section
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center "
-        style={{ backgroundImage: url('https://business.cornell.edu/wp-content/uploads/sites/2/2025/05/pexels-auto-focus-2932338-7416824-2-600x400-1.jpeg') }}
+        style={{ backgroundImage: "url('/hero_image2.jpg')" }}
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
@@ -89,17 +89,17 @@ function Homepage(){
             {
               name: "Maria Lopez",
               text: "Thanks to MSME Connect, my business has grown exponentially!",
-              image: "",
+              image: "story1.jpg",
             },
             {
               name: "Gurpeerat Singh",
               text: "Our reach has expanded far beyond our expectations.",
-              image: "",
+              image: "story2.jpg",
             },
             {
               name: "Ahmed Khan",
               text: "MSME Connect made digital transformation seamless.",
-              image: "",
+              image: "story3.jpg",
             },
           ].map((story, idx) => (
             <div
