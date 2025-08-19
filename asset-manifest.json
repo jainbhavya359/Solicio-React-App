@@ -1,17 +1,13 @@
 {
   "files": {
-    "main.css": "/Solicio-React-App-/static/css/main.cd35a008.css",
-    "main.js": "/Solicio-React-App-/static/js/main.42d005a5.js",
-    "static/media/story3.jpg": "/Solicio-React-App-/static/media/story3.008d410c9034be2f84b8.jpg",
-    "static/media/story2.jpg": "/Solicio-React-App-/static/media/story2.76316aba751b8d1db5d8.jpg",
-    "static/media/hero_image2.jpg": "/Solicio-React-App-/static/media/hero_image2.33fc878246139de42af0.jpg",
-    "static/media/story1.jpg": "/Solicio-React-App-/static/media/story1.b26ab429a44379531c8c.jpg",
-    "index.html": "/Solicio-React-App-/index.html",
-    "main.cd35a008.css.map": "/Solicio-React-App-/static/css/main.cd35a008.css.map",
-    "main.42d005a5.js.map": "/Solicio-React-App-/static/js/main.42d005a5.js.map"
+    "main.css": "/Solicio-React-App/static/css/main.cd35a008.css",
+    "main.js": "/Solicio-React-App/static/js/main.ed52c992.js",
+    "index.html": "/Solicio-React-App/index.html",
+    "main.cd35a008.css.map": "/Solicio-React-App/static/css/main.cd35a008.css.map",
+    "main.ed52c992.js.map": "/Solicio-React-App/static/js/main.ed52c992.js.map"
   },
   "entrypoints": [
     "static/css/main.cd35a008.css",
-    "static/js/main.42d005a5.js"
+    "static/js/main.ed52c992.js"
   ]
 }
