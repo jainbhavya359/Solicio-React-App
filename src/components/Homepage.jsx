@@ -20,7 +20,7 @@ function Homepage(){
       {/* Modern Hero */}
       <section
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center "
-        style={{ backgroundImage: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fapi-server.pexels.com%2Fphoto%2Fan-elderly-man-selling-vegetables-in-a-stall-7416824%2F&psig=AOvVaw0cICkrT4qA_7V_KxxHoKp7&ust=1755624088209000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCPC1mcLvlI8DFQAAAAAdAAAAABAE") }}
+        style={{ backgroundImage: url('https://business.cornell.edu/wp-content/uploads/sites/2/2025/05/pexels-auto-focus-2932338-7416824-2-600x400-1.jpeg') }}
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
