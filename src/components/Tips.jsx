@@ -29,9 +29,11 @@ export default function Tips(){
 
     return (
         <>
-            {!loading && error ? <p> error occured </p> : isAuthenticated ?
+            {loading ? <div className="flex justify-center items-center py-10">
+                <div className="w-6 h-6 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                </div> : error ? <p> error occured </p> : isAuthenticated ?
                 <div className="sticky bottom-0 rounded-xl shadow-xl flex justify-center itmes-center z-40">
-                    <div className="flex flex-col justify-center items-center shadow-md shadow-emerald-200/50 bg-emerald-100/50 rounded-3xl px-7 py-2 mb-9 backdrop-blur-md">
+                    <div className="flex flex-col justify-center items-center shadow-md shadow-emerald-200/50 bg-emerald-100/50 rounded-3xl px-7 py-2 mb-9 backdrop-blur-sm">
                         <p>Did you know : {tips?.tip}</p>
                     </div>
                 </div>

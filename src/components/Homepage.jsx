@@ -23,7 +23,7 @@ function Homepage(){
         style={{ backgroundImage: "url('/hero_image2.jpg')" }}
       >
         {/* Glassmorphism overlay */}
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-black/40" />
 
         <div className="relative z-10 max-w-3xl text-center text-white px-6">
           <h1 className="text-5xl md:text-6xl font-extrabold bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
@@ -65,18 +65,20 @@ function Homepage(){
       </section>   
 
       {/* Tagline */}
-      <div className="py-16 text-center mt-9">
-        <h2 className="text-3xl md:text-4xl font-semibold tracking-wide">
-          छोटे कदम, बड़ी उड़ान
-        </h2>
+      <div className="py-16 flex justify-around items-center mt-9">
         <img
           src="https://gorgeous-gumption-a148f7.netlify.app/pakshi.jpeg"
           alt="Tagline"
-          className="mt-6 w-56 rounded-xl shadow-lg hover:scale-105 transition duration-500 mx-auto"
+          className="mt-6 w-1/4 border-2 rounded-xl shadow-lg shadow-emerald-50 hover:scale-105 transition duration-500"
         />
-        <p className="mt-4 text-gray-500 italic">
-          (Chhote Kadam, Badi Udaan) - Small Steps, Big Flight
-        </p>
+        <div className="flex flex-col gap-4 p-5 justify-center items-center">
+          <h2 className="text-6xl font-semibold tracking-wide">
+            छोटे कदम, बड़ी उड़ान
+          </h2>
+          <p className="mt-4 text-2xl mt-8 text-gray-500 italic">
+            (Chhote Kadam, Badi Udaan) - Small Steps, Big Flight
+          </p>
+        </div>
       </div>
 
       {/* Success Stories */}

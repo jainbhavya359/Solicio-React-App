@@ -170,7 +170,9 @@ export default function ContactUs() {
               </summary>
               <p class="mt-3 text-sm text-slate-600">Yes. Use the Local Wholesalers Network to discover suppliers near you and compare offers.</p>
             </details>
-            {loading ? <p>Loading... </p> : error ? <p>Error Occured</p> : 
+            {loading ? <div className="flex justify-center items-center py-5">
+                <div className="w-6 h-6 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                </div> : error ? <p>Error Occured</p> : 
               data.map((data) => {
                 if(data.answer){
                   return (

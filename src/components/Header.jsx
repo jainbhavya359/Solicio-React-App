@@ -22,7 +22,7 @@ function Header() {
 
   return (
     <div
-      className={`fixed top-0 w-full z-50 bg-[#fff]/70 backdrop-blur-md shadow-lg 
+      className={`fixed top-0 w-full z-50 bg-[#fff]/70 backdrop-blur-sm shadow-lg 
         transform transition-transform duration-500 ease-in-out
         ${show ? "translate-y-0" : "-translate-y-full"}`}
     >
