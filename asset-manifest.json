@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/Solicio-React-App/static/css/main.f82e35e6.css",
-    "main.js": "/Solicio-React-App/static/js/main.2baed511.js",
+    "main.js": "/Solicio-React-App/static/js/main.caa77edf.js",
     "index.html": "/Solicio-React-App/index.html",
     "main.f82e35e6.css.map": "/Solicio-React-App/static/css/main.f82e35e6.css.map",
-    "main.2baed511.js.map": "/Solicio-React-App/static/js/main.2baed511.js.map"
+    "main.caa77edf.js.map": "/Solicio-React-App/static/js/main.caa77edf.js.map"
   },
   "entrypoints": [
     "static/css/main.f82e35e6.css",
-    "static/js/main.2baed511.js"
+    "static/js/main.caa77edf.js"
   ]
 }
