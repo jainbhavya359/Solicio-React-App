@@ -20,7 +20,7 @@ function Homepage(){
       {/* Modern Hero */}
       <section
         className="relative min-h-screen bg-cover bg-center flex items-center justify-center "
-        style={{ backgroundImage: "url('/hero_image2.jpg')" }}
+        style={{ backgroundImage: "url('hero_image2.jpg')" }}
       >
         {/* Glassmorphism overlay */}
         <div className="absolute inset-0 bg-black/40" />
