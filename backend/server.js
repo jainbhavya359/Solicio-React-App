@@ -88,6 +88,18 @@ app.delete("/api/deleteLoans/:id", (req, res) => {
   });
 });
 
+app.post("/api/stock", async (req, res) => {
+  const {email, productName, purchaseQuantity, purchasePrice, date} = req.body();
+  try{
+    const response = await db.query("INSERT INTO msme_stock(email, product_name, quantity, price, date) VALUES($1, $2, $3, $4, $5)",[email, productName, purchaseQuantity, purchasePrice, date]);
+    if(!response.ok){
+      console.log("data not sent");
+    }
+  }catch (err){
+    console.log("error", err);
+  }
+});
+
 app.listen(3001, () => {
   console.log('Server running on http://localhost:3001');
 });
