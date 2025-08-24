@@ -25,7 +25,8 @@ export default function Tips(){
         fetchData();
     }, []);
 
-    const tips = data.length ? (data[Math.floor(Math.random() * data.length)]) : null;
+    const date = new Date().getDate();
+    const tips = data.length ? data[date*7%(data.length)] : null;
 
     return (
         <>

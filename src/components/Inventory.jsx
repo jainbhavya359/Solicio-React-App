@@ -1,76 +1,218 @@
-import React from "react";
+import React, { use, useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Inventory (){
+
+    const [ newPurchase, setNewPurchase ] = useState(false);
+    const [ newSale, setNewSale ] = useState(false);
+    const [ purchasePrice, setPurchasePrice ] = useState(0);
+    const [ productName, setProductName ] = useState("");
+    const [ purchaseQuantity, setPurchaseQuantity ] = useState(0);
+
+    const { user, isAuthenticated, loginWithRedirect} = useAuth0();
+
+    function handleBought(){
+        setNewSale(false);
+        setNewPurchase(true);
+    }
+
+    function handleSold(){
+        setNewPurchase(false);
+        setNewSale(true);
+    }
+
+    useEffect(()=>{
+        if(!isAuthenticated){
+            loginWithRedirect();
+        }
+
+        window.scrollTo(0,0);
+    },[]);
+
+    const email = user.email;
+    const date = new Date().toLocaleTimeString();
+
+    async function addStock(){
+        try{
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/stock`,{
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({email, productName, purchaseQuantity, purchasePrice, date})
+            });
+
+            if(!response.ok){
+                console.log("Can't Add Stock");
+            }
+        }catch(err){
+            console.log("Error", err);
+        }
+    }
+
     return (
-        <main className="flex flex-col justify-center items-center w-full bg-gray-50">
-            <div className="m-5 p-4 w-2/3">
-                <header className="mb-5 flex flex-col justify-center items-center">
-                    <h1 className="text-4xl font-bold p-7">Business Optimization</h1>
-                    <p className="text-lg text-gray-500">Manage your inventory, track sales, and optimize your business operations.</p>
+        <main className="flex flex-col items-center w-full min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6 mt-9">
+            <div className="w-full max-w-5xl space-y-8 mt-9">
+                
+                {/* Header Section */}
+                <header className="text-center">
+                <h1 className="text-5xl font-extrabold text-indigo-700 mb-4 tracking-tight">
+                    Business Optimization
+                </h1>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Manage your inventory, track sales, and optimize your business operations.
+                </p>
                 </header>
 
-                <div className="flex flex-col justify-start rounded-xl shadow-md m-5 p-5 w-full">
-                    <h2 className="text-3xl text-indigo-700 font-bold border-b-2 pb-3 ml-4">Inventory Management</h2>
-                    <div className="flex justify-stretch">
-                        <button className="w-full p-2 m-4 rounded-xl bg-blue-400" onclick="showForm('bought')">Bought</button>
-                        <button className="w-full p-4 m-4 rounded-xl bg-red-400" onclick="showForm('sold')">Sold</button>
+                {/* Inventory Management */}
+                <section className="bg-white rounded-2xl shadow-lg p-8 transition hover:shadow-xl">
+                <h2 className="text-3xl font-bold text-indigo-600 border-b pb-4 mb-6">
+                    Inventory Management
+                </h2>
+                <div className="flex gap-6">
+                    <button
+                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold hover:scale-105 transition"
+                    onClick={handleBought}
+                    >
+                    Bought
+                    </button>
+                    <button
+                    className="flex-1 py-3 rounded-xl bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold hover:scale-105 transition"
+                    onClick={handleSold}
+                    >
+                    Sold
+                    </button>
+                </div>
+                </section>
+
+                {/* New Purchase Form */}
+                <section
+                className={`bg-white rounded-2xl shadow-lg p-8 transition-all ${
+                    newPurchase ? "opacity-100" : "hidden"
+                }`}
+                >
+                <h3 className="text-2xl font-bold text-green-600 border-b pb-4 mb-6">Record a New Purchase</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                    <label htmlFor="bought-product-name" className="block text-gray-700 mb-2">
+                        Product Name
+                    </label>
+                    <input
+                        type="text"
+                        id="bought-product-name"
+                        placeholder="e.g., Steel Pipes"
+                        onChange={(e)=> {setProductName(e.target.value)}}
+                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500"
+                    />
+                    </div>
+                    <div>
+                    <label htmlFor="bought-quantity" className="block text-gray-700 mb-2">
+                        Quantity
+                    </label>
+                    <input
+                        type="number"
+                        id="bought-quantity"
+                        min="1"
+                        defaultValue="1"
+                        onChange={(e)=>{setPurchaseQuantity(e.target.value)}}
+                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500"
+                    />
+                    </div>
+                    <div>
+                    <label htmlFor="bought-quantity" className="block text-gray-700 mb-2">
+                        Price (₹)
+                    </label>
+                    <input
+                        type="number"
+                        id="bought-quantity"
+                        min="0"
+                        defaultValue="1000"
+                        onChange={(e)=>{setPurchasePrice(e.target.value)}}
+                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500"
+                    />
                     </div>
                 </div>
+                <button
+                    className="mt-6 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:scale-105 transition"
+                    onClick={addStock}
+                >
+                    Add to Stock
+                </button>
+                </section>
 
-                <div className="flex flex-col justify-start rounded-xl shadow-md m-5 p-5 w-full">
-                    <h3 className="text-3xl font-bold border-b-2 pb-3 ml-4 text-green-600">Record a New Purchase</h3>
-                    <div className="input-grid">
-                        <div className="form-group">
-                            <label for="bought-product-name">Product Name</label>
-                            <input type="text" id="bought-product-name" placeholder="e.g., Steel Pipes" />
-                        </div>
-                        <div className="form-group">
-                            <label for="bought-quantity">Quantity</label>
-                            <input type="number" id="bought-quantity" min="1" value="1" />
-                        </div>
+                {/* Sold Form */}
+                <section id="sold-form-container" className={`bg-white rounded-2xl shadow-lg p-8 ${ newSale ? "opacity-100" : "hidden"}`}>
+                <h3 className="text-2xl font-bold text-red-600 border-b pb-4 mb-6">
+                    Record a New Sale
+                </h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                    <label htmlFor="sold-product-name" className="block text-gray-700 mb-2">
+                        Product Name
+                    </label>
+                    <input
+                        type="text"
+                        id="sold-product-name"
+                        placeholder="e.g., Steel Pipes"
+                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-500"
+                    />
                     </div>
-                    <button className="action-button btn-bought" onclick="recordTransaction('bought')">Add to Stock</button>
-                </div>
-
-                <div id="sold-form-container" class="section-card hidden">
-                    <h3 className="sub-heading">Record a New Sale</h3>
-                    <div className="input-grid">
-                        <div className="form-group">
-                            <label for="sold-product-name">Product Name</label>
-                            <input type="text" id="sold-product-name" placeholder="e.g., Steel Pipes" />
-                        </div>
-                        <div className="form-group">
-                            <label for="sold-quantity">Quantity</label>
-                            <input type="number" id="sold-quantity" min="1" value="1" />
-                        </div>
-                    </div>
-                    <button className="action-button btn-sold" onclick="recordTransaction('sold')">Remove from Stock</button>
-                </div>
-
-                <div className="section-card">
-                    <h2 className="section-heading text-emerald">Current Stock Report</h2>
-                    <div id="stock-report" className="report-content"><p className="text-secondary">Your inventory report will appear here once you add products.</p></div>
-                </div>
-
-                <div className="section-card">
-                    <h2 className="section-heading text-teal">Sales Report</h2>
-                    <div id="sold-report" className="report-content">
-                        <h3 className="sub-heading">Most Selling Product (This Week)</h3>
-                        <h3 className="sub-heading mt-6">Sales History</h3>
-                        <table id="sold-history-table">
-                            <thead>
-                                <tr>
-                                    <th>Product Name</th>
-                                    <th>Quantity</th>
-                                    <th>Date</th>
-                                </tr>
-                            </thead>
-                            <tbody><tr><td colspan="3" className="text-secondary text-center">No sales history yet.</td></tr></tbody>
-                        </table>
+                    <div>
+                    <label htmlFor="sold-quantity" className="block text-gray-700 mb-2">
+                        Quantity
+                    </label>
+                    <input
+                        type="number"
+                        id="sold-quantity"
+                        min="1"
+                        defaultValue="1"
+                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-red-500"
+                    />
                     </div>
                 </div>
-                
+                <button
+                    className="mt-6 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-xl font-semibold hover:scale-105 transition"
+                    
+                >
+                    Remove from Stock
+                </button>
+                </section>
+
+                {/* Current Stock Report */}
+                <section className="bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-emerald-600 border-b pb-4 mb-6">
+                    Current Stock Report
+                </h2>
+                <div id="stock-report" className="text-gray-500">
+                    <p>Your inventory report will appear here once you add products.</p>
+                </div>
+                </section>
+
+                {/* Sales Report */}
+                <section className="bg-white rounded-2xl shadow-lg p-8">
+                <h2 className="text-2xl font-bold text-teal-600 border-b pb-4 mb-6">
+                    Sales Report
+                </h2>
+                <div id="sold-report">
+                    <h3 className="text-xl font-semibold text-gray-800">Most Selling Product (This Week)</h3>
+                    <h3 className="text-xl font-semibold text-gray-800 mt-6">Sales History</h3>
+                    <table className="w-full border-collapse mt-4">
+                    <thead>
+                        <tr className="bg-gray-100 text-gray-700">
+                        <th className="p-3 text-left">Product Name</th>
+                        <th className="p-3 text-left">Quantity</th>
+                        <th className="p-3 text-left">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td colSpan="3" className="text-gray-500 text-center py-4">
+                            No sales history yet.
+                        </td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </section>
             </div>
-        </main>
+            </main>
     );
 }
