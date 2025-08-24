@@ -2,7 +2,7 @@
   "name": "Solicio",
   "version": "0.1.0",
   "private": true,
-  "homepage": ".",
+  "homepage": "https://jainbhavya359.github.io/Solicio-React-App",
   "dependencies": {
     "@auth0/auth0-react": "^2.4.0",
     "cors": "^2.8.5",
