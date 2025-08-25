@@ -8,7 +8,7 @@ export default function Inventory (){
     const [ newPurchase, setNewPurchase ] = useState(false);
     const [ newSale, setNewSale ] = useState(false);
 
-    const { user, isAuthenticated, loginWithRedirect} = useAuth0();
+    const { isAuthenticated, loginWithRedirect} = useAuth0();
 
     function handleBought(){
         setNewSale(false);
@@ -27,28 +27,6 @@ export default function Inventory (){
 
         window.scrollTo(0,0);
     },[]);
-
-    
-
-    const [ error, setError ] = useState(false);
-    const [ loading, setLoading ] = useState(true);
-    const [ data, setData ] = useState([]); 
-
-    const fetchStock = async () => {
-        try{
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getstock`);
-            if(!response.ok){
-                throw new error("Network Error");
-            }else{
-                const json = response.json();
-                setData(json);
-            }
-        }catch(err){
-            setError(true);
-        }finally{
-            setLoading(false);
-        }
-    }
 
     return (
         <main className="flex flex-col items-center w-full min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-6 mt-9">

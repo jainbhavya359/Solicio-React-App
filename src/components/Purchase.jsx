@@ -7,13 +7,13 @@ export default function Purchase({newPurchase}) {
     const [ purchaseQuantity, setPurchaseQuantity ] = useState(1);
 
     const { user, isAuthenticated, loginWithRedirect} = useAuth0();
-    useEffect(()=>{
-        if(!isAuthenticated){
-            loginWithRedirect();
-        }
-    },[]);
 
-    const email = user.email;
+    let email = null;
+    useEffect(()=>{
+        if(isAuthenticated){
+            email = user.email;
+        }
+    })
     const date = new Date().toISOString().split('T')[0];
 
     const addStock = async () => {
