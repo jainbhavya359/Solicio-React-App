@@ -21,7 +21,7 @@ export default function StockReport (){
             if(!response.ok){
                 throw new error("Network Error");
             }else{
-                const json = response.json();
+                const json = await response.json();
                 setData(json);
             }
         }catch(err){
@@ -43,7 +43,7 @@ export default function StockReport (){
             <div id="stock-report" className="text-gray-500">
                 {loading ? <p>Loading..</p> :
                     error ? <p>Error Occured</p> :
-                    !data.length ? <p>Add Stock to see it in your Inventory</p> :
+                    !data ? <p>Add Stock to see it in your Inventory</p> :
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-white rounded-lg shadow-sm border border-gray-200">
                             <thead className="bg-indigo-500 text-white">
@@ -68,15 +68,15 @@ export default function StockReport (){
                                 <td className="py-3 px-6 font-medium text-gray-800">
                                     ₹{stock.price.toLocaleString()}
                                 </td>
-                                <td className="py-3 px-6 text-gray-600">{stock.date}</td>
-                                <td className="py-2 px-4 border">
+                                <td className="py-3 px-6 text-gray-600">{new Date(stock.date).toISOString().split('T')[0]}</td>
+                                {/*<td className="py-2 px-4 border">
                                     <button
                                     onClick={() => onHandleClick(stock.id)}
                                     className="bg-white text-red-500 px-3 py-1 rounded-2xl border border-red-500 hover:bg-gray-50"
                                     >
                                     Remove
                                     </button>
-                                </td>
+                                </td>*/}
                                 </tr> : null)
                             ))}
                             </tbody>
