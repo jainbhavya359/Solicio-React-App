@@ -32,14 +32,15 @@ export default function Inventory (){
     const email = user.email;
     const date = new Date().toLocaleTimeString();
 
-    async function addStock(){
+    const addStock = async () => {
+        console.log("clicked");
         try{
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/stock`,{
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email, productName, purchaseQuantity, purchasePrice, date})
             });
-
+            
             if(!response.ok){
                 console.log("Can't Add Stock");
             }

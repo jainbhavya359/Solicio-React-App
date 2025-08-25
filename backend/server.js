@@ -91,12 +91,12 @@ app.delete("/api/deleteLoans/:id", (req, res) => {
 app.post("/api/stock", async (req, res) => {
   const {email, productName, purchaseQuantity, purchasePrice, date} = req.body;
   try{
-    const response = await db.query("INSERT INTO msme_stock(email, product_name, quantity, price, date) VALUES($1, $2, $3, $4, $5)",[email, productName, purchaseQuantity, purchasePrice, date]);
-    if(!response.ok){
-      console.log("data not sent");
-    }
+    const response = await db.query("INSERT INTO msme_stock(email, product_name, quantity, price, date) VALUES($1, $2, $3, $4, $5)"
+      ,[email, productName, purchaseQuantity, purchasePrice, date]);
+    res.status(200).json({ message: 'Data saved successfully' });
   }catch (err){
     console.log("error", err);
+    res.status(500).json({ error: 'Failed to save data' });
   }
 });
 
