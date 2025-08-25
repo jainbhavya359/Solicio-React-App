@@ -1,13 +1,12 @@
 import React, { use, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import Purchase from "./Purchase";
+import StockReport from "./StockReport";
 
 export default function Inventory (){
 
     const [ newPurchase, setNewPurchase ] = useState(false);
     const [ newSale, setNewSale ] = useState(false);
-    const [ purchasePrice, setPurchasePrice ] = useState(1000);
-    const [ productName, setProductName ] = useState("");
-    const [ purchaseQuantity, setPurchaseQuantity ] = useState(1);
 
     const { user, isAuthenticated, loginWithRedirect} = useAuth0();
 
@@ -29,23 +28,25 @@ export default function Inventory (){
         window.scrollTo(0,0);
     },[]);
 
-    const email = user.email;
-    const date = new Date().toISOString().split('T')[0];
+    
 
-    const addStock = async () => {
-        console.log("clicked");
+    const [ error, setError ] = useState(false);
+    const [ loading, setLoading ] = useState(true);
+    const [ data, setData ] = useState([]); 
+
+    const fetchStock = async () => {
         try{
-            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/stock`,{
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({email, productName, purchaseQuantity, purchasePrice, date})
-            });
-
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getstock`);
             if(!response.ok){
-                console.log("Can't Add Stock");
+                throw new error("Network Error");
+            }else{
+                const json = response.json();
+                setData(json);
             }
         }catch(err){
-            console.log("Error", err);
+            setError(true);
+        }finally{
+            setLoading(false);
         }
     }
 
@@ -85,59 +86,7 @@ export default function Inventory (){
                 </section>
 
                 {/* New Purchase Form */}
-                <section
-                className={`bg-white rounded-2xl shadow-lg p-8 transition-all ${
-                    newPurchase ? "opacity-100" : "hidden"
-                }`}
-                >
-                <h3 className="text-2xl font-bold text-green-600 border-b pb-4 mb-6">Record a New Purchase</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                    <label htmlFor="bought-product-name" className="block text-gray-700 mb-2">
-                        Product Name
-                    </label>
-                    <input
-                        type="text"
-                        id="bought-product-name"
-                        placeholder="e.g., Steel Pipes"
-                        onChange={(e)=> {setProductName(e.target.value)}}
-                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500"
-                    />
-                    </div>
-                    <div>
-                    <label htmlFor="bought-quantity" className="block text-gray-700 mb-2">
-                        Quantity
-                    </label>
-                    <input
-                        type="number"
-                        id="bought-quantity"
-                        min="1"
-                        defaultValue="1"
-                        onChange={(e)=>{setPurchaseQuantity(e.target.value)}}
-                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500"
-                    />
-                    </div>
-                    <div>
-                    <label htmlFor="bought-quantity" className="block text-gray-700 mb-2">
-                        Price (₹)
-                    </label>
-                    <input
-                        type="number"
-                        id="bought-quantity"
-                        min="0"
-                        defaultValue="1000"
-                        onChange={(e)=>{setPurchasePrice(e.target.value)}}
-                        className="w-full border rounded-lg p-3 focus:ring-2 focus:ring-green-500"
-                    />
-                    </div>
-                </div>
-                <button
-                    className="mt-6 px-6 py-3 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-xl font-semibold hover:scale-105 transition"
-                    onClick={addStock}
-                >
-                    Add to Stock
-                </button>
-                </section>
+                <Purchase newPurchase={newPurchase}/>
 
                 {/* Sold Form */}
                 <section id="sold-form-container" className={`bg-white rounded-2xl shadow-lg p-8 ${ newSale ? "opacity-100" : "hidden"}`}>
@@ -178,14 +127,7 @@ export default function Inventory (){
                 </section>
 
                 {/* Current Stock Report */}
-                <section className="bg-white rounded-2xl shadow-lg p-8">
-                <h2 className="text-2xl font-bold text-emerald-600 border-b pb-4 mb-6">
-                    Current Stock Report
-                </h2>
-                <div id="stock-report" className="text-gray-500">
-                    <p>Your inventory report will appear here once you add products.</p>
-                </div>
-                </section>
+                <StockReport />
 
                 {/* Sales Report */}
                 <section className="bg-white rounded-2xl shadow-lg p-8">

@@ -100,6 +100,15 @@ app.post("/api/stock", async (req, res) => {
   }
 });
 
+app.get("/api/getstock", async (req, res) => {
+  try{
+    const data = await db.query("SELECT * FROM msme_stock");
+    res.json(data.rows);
+  }catch(err){
+    console.log(err);
+  }
+});
+
 app.listen(3001, () => {
   console.log('Server running on http://localhost:3001');
 });
