@@ -5,9 +5,9 @@ export default function Inventory (){
 
     const [ newPurchase, setNewPurchase ] = useState(false);
     const [ newSale, setNewSale ] = useState(false);
-    const [ purchasePrice, setPurchasePrice ] = useState(0);
+    const [ purchasePrice, setPurchasePrice ] = useState(1000);
     const [ productName, setProductName ] = useState("");
-    const [ purchaseQuantity, setPurchaseQuantity ] = useState(0);
+    const [ purchaseQuantity, setPurchaseQuantity ] = useState(1);
 
     const { user, isAuthenticated, loginWithRedirect} = useAuth0();
 
@@ -30,7 +30,7 @@ export default function Inventory (){
     },[]);
 
     const email = user.email;
-    const date = new Date().toLocaleTimeString();
+    const date = new Date().toISOString().split('T')[0];
 
     const addStock = async () => {
         console.log("clicked");
@@ -40,7 +40,7 @@ export default function Inventory (){
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({email, productName, purchaseQuantity, purchasePrice, date})
             });
-            
+
             if(!response.ok){
                 console.log("Can't Add Stock");
             }
