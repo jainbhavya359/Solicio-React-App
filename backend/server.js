@@ -89,7 +89,7 @@ app.delete("/api/deleteLoans/:id", (req, res) => {
 });
 
 app.post("/api/stock", async (req, res) => {
-  const {email, productName, purchaseQuantity, purchasePrice, date} = req.body();
+  const {email, productName, purchaseQuantity, purchasePrice, date} = req.body;
   try{
     const response = await db.query("INSERT INTO msme_stock(email, product_name, quantity, price, date) VALUES($1, $2, $3, $4, $5)",[email, productName, purchaseQuantity, purchasePrice, date]);
     if(!response.ok){
