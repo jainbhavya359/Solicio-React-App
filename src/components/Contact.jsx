@@ -135,7 +135,7 @@ export default function ContactUs() {
       </section>
 
       {/* FAQ Section */}
-      <section id="faqs" class="py-16 sm:py-24 bg-slate-50">
+      <section class="py-16 sm:py-24 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <header class="max-w-2xl">
             <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">FAQs</h2>

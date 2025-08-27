@@ -148,7 +148,7 @@ function Homepage(){
         </div>
       </section>
 
-      <section class="py-16 sm:py-24 bg-gray-50">
+      <section class="py-16 sm:py-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="grid gap-6 sm:grid-cols-3">
             <div class="rounded-2xl border border-slate-200 p-6 text-center">

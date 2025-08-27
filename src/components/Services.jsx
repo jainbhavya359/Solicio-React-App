@@ -44,7 +44,7 @@ export default function Services(){
     ];
 
     return(
-        <section className="py-12 scroll-mt-24 pt-9 mt-9" id="target">
+        <section className="py-12 scroll-mt-24 pt-9 mt-9 bg-slate-50" id="target">
             <div className="flex flex-col justify-center items-center mt-6">
                 <h2 className="font-bold text-2xl pb-6">Your Partner in Business Growth</h2>
                 <p className="text-center w-1/2 pb-8">

@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import StockReport from "./StockReport";
 
 export function Profile() {
     const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
@@ -117,6 +118,8 @@ export function Profile() {
                 <p className="text-gray-500">No loans found.</p>
             )}
             </div>
+
+            <StockReport />
         </>
         );
 
