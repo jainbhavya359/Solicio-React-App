@@ -2,11 +2,13 @@ import React, { use, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Purchase from "./Purchase";
 import StockReport from "./StockReport";
+import { useLocation } from "react-router-dom";
 
 export default function Inventory (){
 
     const [ newPurchase, setNewPurchase ] = useState(false);
     const [ newSale, setNewSale ] = useState(false);
+    const location = useLocation();
 
     const { isAuthenticated, loginWithRedirect} = useAuth0();
 
@@ -22,7 +24,9 @@ export default function Inventory (){
 
     useEffect(()=>{
         if(!isAuthenticated){
-            loginWithRedirect();
+            loginWithRedirect({
+                appState: { returnTo: location.pathname }
+            });
         }
 
         window.scrollTo(0,0);

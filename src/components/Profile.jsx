@@ -63,8 +63,8 @@ export function Profile() {
         <>
 
             {/* Loan Section */}
-            <div className="flex flex-col justify-start gap-4 rounded-xl shadow-lg p-6 m-5 bg-white border border-gray-100">
-            <h2 className="text-2xl font-bold border-b pb-3 text-indigo-600">
+            <div className="flex flex-col justify-start gap-4 rounded-xl shadow-lg p-6 m-5 mt-10 pt-10 bg-white border border-gray-100">
+            <h2 className="text-2xl font-bold border-b pb-3 pt-3 text-indigo-600">
                 Your Loans
             </h2>
 

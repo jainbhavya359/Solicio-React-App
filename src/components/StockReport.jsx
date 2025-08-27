@@ -2,14 +2,7 @@ import React, { use, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function StockReport (){
-    const { user, isAuthenticated, loginWithRedirect} = useAuth0();
-    
-    useEffect(()=>{
-        if(!isAuthenticated){
-            loginWithRedirect();
-        }
-
-    },[]);
+    const { user} = useAuth0();
     
     const [ error, setError ] = useState(false);
     const [ loading, setLoading ] = useState(true);
@@ -35,6 +28,32 @@ export default function StockReport (){
         fetchStock();
     },[]);
 
+    console.log(data);
+    let new_data = [];
+
+    const fetchNewData = () => {
+        new_data = data.reduce((acc, curr) => {
+            const existing = acc.find(
+            item =>
+                item.product_name === curr.product_name &&
+                item.price === curr.price &&
+                item.date === curr.date &&
+                item.email === curr.email
+            );
+
+            if (existing) {
+            existing.quantity += curr.quantity;
+            } else {
+            acc.push({ ...curr });
+            }
+            return acc;
+        }, []);
+    };
+
+
+    fetchNewData();
+
+
     return (
         <section className="bg-white rounded-2xl shadow-lg p-8">
             <h2 className="text-2xl font-bold text-emerald-600 border-b pb-4 mb-6">
@@ -52,11 +71,10 @@ export default function StockReport (){
                                 <th className="py-3 px-6 text-left">Quantity</th>
                                 <th className="py-3 px-6 text-left">Price (₹)</th>
                                 <th className="py-3 px-6 text-left">Date</th>
-                                <th className="py-3 px-6 text-left">Action</th>
                             </tr>
                             </thead>
                             <tbody>
-                            {data.map((stock, index) => (
+                            {new_data.map((stock, index) => (
                                 (stock.email == user.email ? <tr
                                 key={stock.id}
                                 className={`${
@@ -69,14 +87,6 @@ export default function StockReport (){
                                     ₹{stock.price.toLocaleString()}
                                 </td>
                                 <td className="py-3 px-6 text-gray-600">{new Date(stock.date).toISOString().split('T')[0]}</td>
-                                {/*<td className="py-2 px-4 border">
-                                    <button
-                                    onClick={() => onHandleClick(stock.id)}
-                                    className="bg-white text-red-500 px-3 py-1 rounded-2xl border border-red-500 hover:bg-gray-50"
-                                    >
-                                    Remove
-                                    </button>
-                                </td>*/}
                                 </tr> : null)
                             ))}
                             </tbody>

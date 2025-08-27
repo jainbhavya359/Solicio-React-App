@@ -2,12 +2,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Services } from "./Services";
+import { useLocation } from "react-router-dom";
 
 
 export default function Loan (){
     const { user, isAuthenticated, loginWithRedirect } = useAuth0();
     const [ name, setName ] = useState("");
     const [ email, setEmail ] = useState("");
+    const location = useLocation();
 
     useEffect(() =>{
         window.scrollTo(0,0);
@@ -15,7 +17,9 @@ export default function Loan (){
 
     useEffect(() => {
         if(!isAuthenticated){
-            loginWithRedirect();
+            loginWithRedirect({
+                appState: { returnTo: location.pathname }
+            });
         }else{
             setName(user.name);
             setEmail(user.email);
@@ -108,25 +112,25 @@ export default function Loan (){
                 <div className="grid grid-cols-2 grid-rows-2">
                     <div className="flex flex-col justify-start m-3">
                         <label>Payment History (%)</label>
-                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" min="0" max="100" value="95" />
+                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" onChange={(e)=>{setPaymentHistory(e.target.value)}} min="0" max="100" value="95" />
                         <p className="text-gray-500 text-sm">Percentage of on-time payments (e.g., 95 for 95%).</p>
                     </div>
                     
                     <div className="flex flex-col justify-start m-3">
                         <label>Credit Utilization Ratio (%)</label>
-                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" min="0" max="100" value="30" />
+                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" onChange={(e)=>{setRatio(e.target.value)}} min="0" max="100" value="30" />
                         <p className="text-gray-500 text-sm">Percentage of available credit used (ideally below 30%).</p>
                     </div>
 
                     <div className="flex flex-col justify-start m-3">
                         <label>Years of Credit History</label>
-                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" min="0" value="5" />
+                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" onChange={(e)=>{setYear(e.target.value)}} min="0" value="5" />
                         <p className="text-gray-500 text-sm">The age of your oldest credit account in years.</p>
                     </div>
 
                     <div className="flex flex-col justify-start m-3">
                         <label>Recent Credit Inquiries</label>
-                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" min="0" value="2" />
+                        <input type="number" className="border border-gray-300 rounded w-5/6 pl-3 pr-10 py-2 focus:outline-none" onChange={(e)=>{setInquiries(e.target.value)}} min="0" value="2" />
                         <p className="text-gray-500 text-sm">Number of times you have recently applied for new credit.</p>
                     </div>
                 </div>
