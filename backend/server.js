@@ -103,6 +103,7 @@ app.post("/api/stock", async (req, res) => {
 app.get("/api/getstock", async (req, res) => {
   try{
     const data = await db.query("SELECT * FROM msme_stock");
+    db.query("SELECT email, product_name, price, date, SUM(quantity) AS total_quantity FROM msme_stock GROUP BY email, product_name, price, date")
     res.json(data.rows);
   }catch(err){
     console.log(err);
