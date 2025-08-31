@@ -3,6 +3,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import StockReport from "./StockReport";
+import License_Report from "./License_Report";
 
 export function Profile() {
     const { loginWithRedirect, logout, user, isAuthenticated } = useAuth0();
@@ -120,6 +121,8 @@ export function Profile() {
             </div>
 
             <StockReport />
+
+            <License_Report />
         </>
         );
 

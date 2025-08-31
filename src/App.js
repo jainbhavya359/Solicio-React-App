@@ -9,6 +9,7 @@ import { Business } from "./components/Business";
 import Loan from "./components/Loan";
 import Inventory from "./components/Inventory";
 import Services from "./components/Services";
+import Licenses from "./components/Licenses";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="loan" element={<Loan />} />
         <Route path="inventory" element={<Inventory />} />
         <Route path="services" element={<Services />} />
+        <Route path="licenses" element={<Licenses />} />
       </Route>
     </Routes>
   );

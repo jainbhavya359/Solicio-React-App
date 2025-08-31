@@ -39,6 +39,7 @@ export default function Services(){
         {
             svg : <img src="https://gorgeous-gumption-a148f7.netlify.app/certificate.png" alt="Licenses"/>,
             heading : <h3>Licenses &amp; Certificates</h3>,
+            to : "/licenses",
             description : <p>Manage all your existing licenses and get a personalized list of required certifications based on your business type and turnover.</p>,
         },
     ];
