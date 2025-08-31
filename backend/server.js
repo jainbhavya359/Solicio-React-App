@@ -113,7 +113,7 @@ app.post("/api/licenses", async (req, res)=> {
   const {licName, authority, date, email} = req.body;
 
   try{
-    const res = await db.query("INSERT INTO msem_licenses(licName, authority, date, email) VALUES($1, $2, $3, $4)", [licName, authority, date, email]);
+    const res = await db.query("INSERT INTO msme_licenses(licName, authority, date, email) VALUES($1, $2, $3, $4)", [licName, authority, date, email]);
     res.status(200).json({message: 'Data saved successfully'});
   }catch(err){
     console.log(err);
