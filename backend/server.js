@@ -130,6 +130,15 @@ app.get("/api/getlicenses", async (req, res)=>{
   }
 });
 
+app.delete("/api/deleteLicense/:id", (req, res)=>{
+  const id = req.params.id;
+  const response = db.query("DELETE FROM msme_licenses WHERE id = $1", [id], (err, result)=>{
+    if(err) return res.status(500).json({message: "failed to delete"});
+    res.status(200).json({message: "Deleted successfully"});
+  });
+
+})
+
 app.listen(3001, () => {
   console.log('Server running on http://localhost:3001');
 });
