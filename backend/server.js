@@ -121,7 +121,7 @@ app.post("/api/licenses", async (req, res)=> {
   }
 });
 
-application.get("/api/getlicenses", async (req, res)=>{
+app.get("/api/getlicenses", async (req, res)=>{
   try{
     const response = await db.query("SELECT * FROM msme_licenses");
     res.json(response.rows);
