@@ -121,6 +121,15 @@ app.post("/api/licenses", async (req, res)=> {
   }
 });
 
+application.get("/api/getlicenses", async (req, res)=>{
+  try{
+    const response = await db.query("SELECT * FROM msme_licenses");
+    res.json(response.rows);
+  }catch(err){
+    console.log(err);
+  }
+});
+
 app.listen(3001, () => {
   console.log('Server running on http://localhost:3001');
 });
