@@ -103,10 +103,21 @@ app.post("/api/stock", async (req, res) => {
 app.get("/api/getstock", async (req, res) => {
   try{
     const data = await db.query("SELECT * FROM msme_stock");
-    db.query("SELECT email, product_name, price, date, SUM(quantity) AS total_quantity FROM msme_stock GROUP BY email, product_name, price, date");
     res.json(data.rows);
   }catch(err){
     console.log(err);
+  }
+});
+
+app.post("/api/licenses", async (req, res)=> {
+  const {licName, authority, date, email} = req.body;
+
+  try{
+    const res = await db.query("INSERT INTO msem_licenses(licName, authority, date, email) VALUES($1, $2, $3, $4)", [licName, authority, date, email]);
+    res.status(200).json({message: 'Data saved successfully'});
+  }catch(err){
+    console.log(err);
+    res.status(500).json({error: 'Failed to save data'});
   }
 });
 
