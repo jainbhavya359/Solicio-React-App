@@ -30,7 +30,7 @@ export default function License_Report(){
         fetchData();
 
         window.scrollTo(0, 0);
-    })
+    },[]);
 
     useEffect(()=>{
         fetchData();
